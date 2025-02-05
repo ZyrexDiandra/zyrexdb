@@ -1,7 +1,7 @@
 --[[
 Please, use this script(for updates):
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Robloxer228s/TimGUI/main/Main.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/main/Main.lua"))()
 
 ]]
 print([[=============================================
@@ -23,79 +23,89 @@ _G.TimGui.Values.SpareButtons = {}
 _G.TimGui.Values.GroupOpened = nil
 _G.TimGui.Values.RusLang = false
 
-local Colors = _G.TimGui.Colors or {}
-Colors.Print = Colors.Print or {}
+local Colors = _G.TimGui.Colors
+Colors.Logo = {}
+Colors.ToggleButton = {}
+Colors.Print = {}
 Colors.Print.Outline = Color3.fromRGB(100,100,200)
 Colors.Print.Background = Color3.fromRGB(38,38,76)
+Colors.Print.Timer = Color3.fromRGB(60,60,110)
 Colors.Text = Color3.new(1,1,1)
+Colors.Arrow = Color3.new(1,1,1)
 Colors.Button = Color3.fromRGB(50,50,100)
-Colors.MainBackground = Color3.new(0.15, 0.15, 0.3)
-Colors.ToggleButton = {}
-Colors.ToggleButton.Enabled = Color3.new(0.25, 1, 0.25)
+Colors.MainBackground = Color3.new(0.15, 0.15, 0.3) 
+Colors.GroupsBackground = Color3.new(0.15, 0.15, 0.25) 
+Colors.TextBoxBackground = Color3.fromRGB(38, 38, 76)
+Colors.ToggleButton.Enabled = Color3.new(0.25, 1, 0.25) 
 Colors.ToggleButton.Disabled = Color3.new(1, 0.25, 0.25)
+Colors.Logo.One = Color3.new(1,1,0) 
+Colors.Logo.Two = Color3.new(1,0,1) 
+Colors.Logo.Separator = Color3.new(0,0,0)
 
--- Create GUI Elements
-local gui = Instance.new("ScreenGui", game.CoreGui)
-local mainFrame = Instance.new("Frame", gui)
-local logoFrame = Instance.new("Frame", mainFrame)
-local titleOne = Instance.new("TextLabel", logoFrame)
-local titleSeparator = Instance.new("Frame", logoFrame)
-local titleTwo = Instance.new("TextLabel", logoFrame)
-local timeLabel = Instance.new("TextLabel", logoFrame)
+local DefaultColors = table.clone(Colors)
+local OptimizeTable = {}
+local LocalPlayer = game.Players.LocalPlayer
+local XTG = UDim.new(1, -400)
+--local ButtonColor = Colors.Buttons
+local Count = 0
+local updTime = 0.25
+local HttpService = game:GetService("HttpService")
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+local gui = Instance.new("ScreenGui",game.CoreGui)
+local f = Instance.new("Frame",gui) 
+local AO = Instance.new("ImageButton",f)
+local Groups = Instance.new("ScrollingFrame",f) 
+local Objects = Instance.new("ScrollingFrame",f) 
+local Logo = Instance.new("Frame",f)
+local tittleOne = Instance.new("TextLabel",Logo)
+local tittleTwo = Instance.new("Frame",Logo)
+local tittleThr = Instance.new("TextLabel",Logo)
+local timeLol = Instance.new("TextLabel",Logo)
+local Commands = {}
 
--- Main Frame Styling
-mainFrame.Name = "Main"
-mainFrame.Position = UDim2.new(1, -400, 0, 0)
-mainFrame.Size = UDim2.new(0, 400, 1, 0)
-mainFrame.BackgroundColor3 = Colors.MainBackground
-Instance.new("UICorner", mainFrame).CornerRadius = UDim.new(0.1, 0)
+f.Name = "Main"
+f.Position = UDim2.new(XTG,UDim.new(1,-25)) 
+f.Size = UDim2.new(0, 400, 1, 0) 
+f.BackgroundColor3 = Colors.MainBackground
 
--- Logo Frame Styling
-logoFrame.Name = "Logo"
-logoFrame.BackgroundTransparency = 1
-logoFrame.Size = UDim2.new(1, -25, 0, 25)
-logoFrame.Position = UDim2.new(0, 25, 0, 0)
+Logo.Name = "Logo"
+Logo.BackgroundTransparency = 1
+Logo.Size = UDim2.new(1, -25, 0, 25)
+Logo.Position = UDim2.new(0, 25, 0, 0)
+tittleThr.Position = UDim2.new(0.5,2,0,0)
+tittleTwo.Position = UDim2.new(0.5,-1,0,0)
+tittleTwo.BackgroundColor3 = Colors.Logo.Separator
+tittleOne.Font = Enum.Font.SourceSansBold
+tittleThr.Font = Enum.Font.SourceSansBold
+tittleOne.TextColor3 = Colors.Logo.One
+tittleThr.TextColor3 = Colors.Logo.Two
+tittleOne.Size = UDim2.new(0.5,-2,1,0)
+tittleThr.Size = UDim2.new(0.5,-2,1,0)
+tittleTwo.Size = UDim2.new(0,2,1,0)
+tittleOne.BackgroundTransparency = 1
+tittleThr.BackgroundTransparency = 1
+tittleOne.TextScaled = true
+tittleThr.TextScaled = true
+tittleOne.TextXAlignment = 1
+tittleThr.TextXAlignment = 0
+tittleOne.Text = "Zyrex"
+tittleThr.Text = "Script"
+tittleOne.Name = "1"
+tittleTwo.Name = "2"
+tittleThr.Name = "3"
 
--- Title One Label Styling
-titleOne.Name = "TitleOne"
-titleOne.Font = Enum.Font.SourceSansBold
-titleOne.TextColor3 = Colors.ToggleButton.Enabled
-titleOne.Size = UDim2.new(0.5, -2, 1, 0)
-titleOne.BackgroundTransparency = 1
-titleOne.TextScaled = true
-titleOne.TextXAlignment = Enum.TextXAlignment.Right
-titleOne.Text = "Zyrex"
-
--- Title Separator Styling
-titleSeparator.Name = "TitleSeparator"
-titleSeparator.BackgroundColor3 = Color3.new(0, 0, 0)
-titleSeparator.Size = UDim2.new(0, 2, 1, 0)
-titleSeparator.Position = UDim2.new(0.5, -1, 0, 0)
-
--- Title Two Label Styling
-titleTwo.Name = "TitleTwo"
-titleTwo.Font = Enum.Font.SourceSansBold
-titleTwo.TextColor3 = Colors.ToggleButton.Disabled
-titleTwo.Size = UDim2.new(0.5, -2, 1, 0)
-titleTwo.Position = UDim2.new(0.5, 2, 0, 0)
-titleTwo.BackgroundTransparency = 1
-titleTwo.TextScaled = true
-titleTwo.TextXAlignment = Enum.TextXAlignment.Left
-titleTwo.Text = "Script"
-
--- Time Label Styling
-timeLabel.Name = "SystemTime"
-timeLabel.TextColor3 = Colors.Text
-timeLabel.Size = UDim2.new(1, 0, 1, 0)
-timeLabel.Text = "Loading"
-timeLabel.TextScaled = true
-timeLabel.BackgroundTransparency = 1
-
--- Time Update Logic
+timeLol.TextXAlignment = 1
+timeLol.Name = "SystemTime"
+timeLol.TextColor3 = Colors.Text
+timeLol.Size = UDim2.new(1,0,1,0)
+timeLol.Text = "Loading"
+timeLol.TextScaled = true
+timeLol.BackgroundTransparency = 1
 task.spawn(function()
-    while task.wait(0.5) and timeLabel.Parent do
-        timeLabel.Text = os.date("%H:%M:%S", os.time())
-    end
+	while task.wait(0.5) and timeLol.Parent do
+		timeLol.Text = os.date("%H:%M:%S",os.time())
+	end
 end)
 
 AO.Name = "Arrow"
@@ -1045,6 +1055,150 @@ else
 end
 Settings.OpenGroup()
 
+local TPTP = _G.TimGui.Groups.CreateNewGroup("TP to players","ТП к игрокам")
+local MACP = 8
+TPTP.Create(3,1,"Multyply anticipate","Множитель предугадывания",function(val)
+	MACP = tonumber(val.Value)
+	if MACP == nil then
+		MACP = 8
+	end
+end).Main.Text = MACP
+local ACP = TPTP.Create(2,2,"to anticipate position","Предугадать движение")
+local TPRot = TPTP.Create(2,3,"TP with rotation","ТП с поворотом")
+TPRot.Main.Value = true
+local AutoTP = TPTP.Create(2,4,"Auto TP","Авто ТП")
+local AutoTPto = nil
+TPTP.Create(1,5,"TP to random player","ТП к случайному игроку",function()
+	local player = game.Players:GetChildren()
+	player = player[math.random(1,(#player)-1)+1]
+	AutoTPto = player.Name
+	AutoTP.Text = "Auto TP to "..AutoTPto
+	AutoTP.RusText = "Авто ТП к "..AutoTPto
+	if TPRot.Value then
+		LocalPlayer.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame
+	else
+		LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(player.Character.HumanoidRootPart.Position,LocalPlayer.Character.HumanoidRootPart.Orientation)
+	end
+end)
+local TPoff = _G.TimGui.Groups.CreateNewGroup("TPoffset")
+TPoff.Visible = false
+local Offset = Vector3.new(0,0,0)
+TPoff.Create(3,"X","X:","X:",function(value)
+	local num = tonumber(value.Value)
+	if num == nil then num = 0 end
+	Offset = Vector3.new(num,Offset.Y,Offset.Z)
+end)
+TPoff.Create(3,"Y","Y:","Y:",function(value)
+	local num = tonumber(value.Value)
+	if num == nil then num = 0 end
+	Offset = Vector3.new(Offset.X,num,Offset.Z)
+end)
+TPoff.Create(3,"Z","Z:","Z:",function(value)
+	local num = tonumber(value.Value)
+	if num == nil then num = 0 end
+	Offset = Vector3.new(Offset.X,Offset.Y,num)
+end)
+TPTP.Create(1,6,"Offset","Смещение",function()
+	TPoff.OpenGroup()
+end)
+TPTP.Create(0,"AllTpTittle","All TP","ТП ко всем")
+local AllTpCouldown = TPTP.Create(3,"AllTpCD","All tp time:","КД при тп ко всем:")
+local AllTP = TPTP.Create(2,"AllTp","All TP","ТП ко всем",function(val)
+    AutoTP.Main.Value = val.Value
+end)
+task.spawn(function()
+    while true do
+        local KD = tonumber(AllTpCouldown.Value) or 1
+        wait(KD)
+        if AllTP.Value then
+            for k,v in pairs(game.Players:GetPlayers()) do
+                if not _G.TimGui.Values.Spare[v.Name] and v ~= LocalPlayer then
+                    AutoTPto = v.Name
+                    AutoTP.Text = "Auto TP to "..AutoTPto
+                    AutoTP.RusText = "Авто ТП к "..AutoTPto
+                    wait(KD)
+                end
+            end
+        end
+    end
+end)
+TPTP.Create(0,7,"Players","Игроки")
+local function AddedPlayer(v)
+	local n = v.Name
+	TPTP.Create(1,n,n,n,function()
+		AutoTPto = n
+		AutoTP.Text = "Auto TP to "..AutoTPto
+		AutoTP.RusText = "Авто ТП к "..AutoTPto
+		local AddPos = Vector3.new(0,0,0)
+		if ACP.Value then
+			local hum = v.Character.Humanoid
+			AddPos = hum.MoveDirection * Vector3.new(MACP,MACP,MACP)
+		end
+		AddPos += Offset
+		if v.Character:FindFirstChild("HumanoidRootPart") then
+			if TPRot.Value then
+				LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame + AddPos
+			else
+				LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Character.HumanoidRootPart.Position,LocalPlayer.Character.HumanoidRootPart.Orientation) + AddPos
+			end
+		else
+			LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.WorldPivot
+			wait(0.5)
+			if v.Character:FindFirstChild("HumanoidRootPart") then
+				if TPRot.Value then
+					LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame + AddPos
+				else
+					LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Character.HumanoidRootPart.Position,LocalPlayer.Character.HumanoidRootPart.Orientation) + AddPos
+				end
+			else
+				_G.TimGui.Print("TP","Player not loaded.","ТП","Игрок не прогружен")
+			end
+		end
+	end)
+end
+for k,v in pairs(game.Players:GetPlayers()) do
+	if v == LocalPlayer then continue end
+	AddedPlayer(v)
+end
+game.Players.PlayerAdded:Connect(AddedPlayer)
+game.Players.PlayerRemoving:Connect(function(player)
+	TPTP.Objects[player.Name].Destroy()
+end)
+
+RunService.RenderStepped:Connect(function()
+	if AutoTPto ~= nil and AutoTP.Value then
+		local v = game.Players:FindFirstChild(AutoTPto)
+		if v then
+			local AddPos = Vector3.new(0,0,0)
+			if ACP.Value then
+				local hum = v.Character.Humanoid
+				AddPos = hum.MoveDirection * Vector3.new(MACP,MACP,MACP)
+			end
+			AddPos += Offset
+			if v.Character:FindFirstChild("HumanoidRootPart") then
+				if TPRot.Value then
+					LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame + AddPos
+				else
+					LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Character.HumanoidRootPart.Position,LocalPlayer.Character.HumanoidRootPart.Orientation) + AddPos
+				end
+			else
+				LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.WorldPivot
+				wait(0.5)
+				if v.Character:FindFirstChild("HumanoidRootPart") then
+					if TPRot.Value then
+						LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame + AddPos
+					else
+						LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Character.HumanoidRootPart.Position,LocalPlayer.Character.HumanoidRootPart.Orientation) + AddPos
+					end
+				else
+					AutoTPto.Main.Value = false
+					_G.TimGui.Print("TP","Player not loaded.","ТП","Игрок не прогружен")
+				end
+			end
+		end
+	end
+end)
+
 Settings.Create(0,"Notificaton","Notificaton","Уведомления")
 local PrintTime = 2.5
 local PrintTimeT = Settings.Create(3,"TimeNotification","Time of notification:","Время уведомления:",function(val)
@@ -1212,11 +1366,11 @@ if _G.Setup ~= nil then
 	end
 end
 if loading[1] ~= false then
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Robloxer228s/TimGUI/refs/heads/main/Standart.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/refs/heads/main/Standart.lua"))()
 end if loading[2] ~= false then
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Robloxer228s/TimGUI/refs/heads/main/Themes.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/refs/heads/main/Themes.lua"))()
 end if loading[3] ~= false then
-	local gameScr = game:HttpGet("https://raw.githubusercontent.com/Robloxer228s/TimGUI/main/Games/".. game.GameId ..".lua")
+	local gameScr = game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/main/Games/".. game.GameId ..".lua")
 	print("TimGui|"..game.GameId)
 	if string.sub(gameScr,1,3)=="404" then
 		print("TimGui|Game script not found")
@@ -1232,11 +1386,11 @@ end if loading[3] ~= false then
 		end)
 	end
 end if loading[4] ~= false then
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Robloxer228s/TimGUI/refs/heads/main/Configs.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/refs/heads/main/Configs.lua"))()
 end
 OptimizeClose.Main.Value = true
 _G.Setup = nil
-print("Zyrex Script|Loaded!")
+print("Zyrex|Script!")
 if FoundScript then
 	_G.TimGui.Print("Loaded","Zyrex Script is loaded!","Загружено","TimGui загружен!")
 else

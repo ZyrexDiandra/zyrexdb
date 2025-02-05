@@ -45,25 +45,19 @@ local function double(Disconnect)
 	end,Disconnect)
 end
 
-group.Create(2, "Double", "Double", "Двойной", function(val)
+group.Create(2,"Double","Double","Двойной",function(val)
     if val.Value then
-        -- Atur ukuran GUI ke mode Double
-        _G.TimGui.Path.Main.Size = UDim2.new(0, 700, 1, 0)
-        _G.TimGui.Saves.Save("Modes", "Double")
-
-        -- Fungsi Double dengan callback
+        _G.TimGui.Path.Main.Size = UDim2.new(0,700,1,0)
+	_G.TimGui.Saves.Save("Modes","Double")
         double(function()
-            -- Kembali ke ukuran Normal dan reset mode
-            TGPath.Main.Size = NormSize
-            val.Main.Value = false
-            _G.TimGui.Saves.Save("Modes", nil)
-        end)
+		TGPath.Main.Size = NormSize
+		val.Main.Value = false
+		_G.TimGui.Saves.Save("Modes",nil)
+	end)
     else
-        -- Putuskan semua posisi yang terhubung
         objpos.Disconnect()
     end
-end).Main.Value = (SaveMode == "Double")
-
+end).Main.Value = SaveMode == "Double"
 
 group.Create(2,"DoubleMini","Double-mini","Двойной-мини",function(val)
     if val.Value then

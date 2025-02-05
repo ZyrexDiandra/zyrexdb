@@ -58,7 +58,7 @@ local guiParent = LocalPlayer.PlayerGui
 if not RunService:IsStudio() then
 	guiParent = game.CoreGui
 end
-local Images = game.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/Robloxer228s/TimGUI/refs/heads/main/TimExplorer/images.json"))
+local Images = game.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/refs/heads/main/TimExplorer/images.json"))
 
 local Sizes = {}
 Sizes.YObj = 25

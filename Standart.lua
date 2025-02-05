@@ -1394,128 +1394,128 @@ for k,player in pairs(game.Players:GetPlayers()) do
 end
 
 -- FUN --------------------------------
--- local FUN = _G.TimGui.Groups.CreateNewGroup("FUN","ВЕСЕЛЬЕ")
+local FUN = _G.TimGui.Groups.CreateNewGroup("FUN","ВЕСЕЛЬЕ")
 
--- local Happy = false
--- local Spiderman = FUN.Create(2,"Spiderman","Spiderman","Человек паук")
--- local Rope
--- Mouse.Button1Down:Connect(function()
--- 	if not Rope and Mouse.Target and Spiderman.Value then
--- 		Rope = Instance.new("RopeConstraint",game.Workspace)
--- 		Rope.Color = BrickColor.new(1,1,1)
--- 		Rope.Visible = true	
--- 		Rope.Length = 1000
--- 		local Atc = Instance.new("Attachment",Mouse.Target)
--- 		Atc.WorldCFrame = Mouse.Hit
--- 		Rope.Attachment1 = Atc
--- 		if LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
--- 			Rope.Attachment0 = LocalPlayer.Character.HumanoidRootPart.RootAttachment
--- 		else
--- 			local attach
--- 			for k,v in pairs(LocalPlayer.Character:GetChildren()) do
--- 				attach = v:FindFirstChildOfClass("Attachment")
--- 				if attach then break end
--- 			end
--- 			if not attach then return end
--- 			Rope.Attachment0 = attach
--- 		end
--- 		while task.wait() and Rope do
--- 			local leng = Rope.CurrentDistance / 1.075
--- 			if leng < 5 then
--- 				leng = 5
--- 			end
--- 			Rope.Length = leng
--- 		end
--- 	end
--- end)
+local Happy = false
+local Spiderman = FUN.Create(2,"Spiderman","Spiderman","Человек паук")
+local Rope
+Mouse.Button1Down:Connect(function()
+	if not Rope and Mouse.Target and Spiderman.Value then
+		Rope = Instance.new("RopeConstraint",game.Workspace)
+		Rope.Color = BrickColor.new(1,1,1)
+		Rope.Visible = true	
+		Rope.Length = 1000
+		local Atc = Instance.new("Attachment",Mouse.Target)
+		Atc.WorldCFrame = Mouse.Hit
+		Rope.Attachment1 = Atc
+		if LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+			Rope.Attachment0 = LocalPlayer.Character.HumanoidRootPart.RootAttachment
+		else
+			local attach
+			for k,v in pairs(LocalPlayer.Character:GetChildren()) do
+				attach = v:FindFirstChildOfClass("Attachment")
+				if attach then break end
+			end
+			if not attach then return end
+			Rope.Attachment0 = attach
+		end
+		while task.wait() and Rope do
+			local leng = Rope.CurrentDistance / 1.075
+			if leng < 5 then
+				leng = 5
+			end
+			Rope.Length = leng
+		end
+	end
+end)
 
--- Mouse.Button1Up:Connect(function()
--- 	if Rope then
--- 		Rope.Attachment1:Destroy()
--- 		Rope:Destroy()
---         Rope = nil
--- 	end
--- end)
+Mouse.Button1Up:Connect(function()
+	if Rope then
+		Rope.Attachment1:Destroy()
+		Rope:Destroy()
+        Rope = nil
+	end
+end)
 
--- local HappyMod = FUN.Create(2,"HappyModSwim","HappyMod fly","HappyMod полёт",function(val)
--- 	if val.Value then
--- 		if LocalPlayer.PlayerGui:FindFirstChild("TouchGui") then
--- 			local button = LocalPlayer.PlayerGui.TouchGui.TouchControlFrame.JumpButton
--- 			button.MouseButton1Down:Connect(function()
--- 				Happy = true
--- 			end)
--- 			button.MouseButton1Up:Connect(function()
--- 				Happy = false
--- 			end)
--- 		end
--- 	end
--- end)
+local HappyMod = FUN.Create(2,"HappyModSwim","HappyMod fly","HappyMod полёт",function(val)
+	if val.Value then
+		if LocalPlayer.PlayerGui:FindFirstChild("TouchGui") then
+			local button = LocalPlayer.PlayerGui.TouchGui.TouchControlFrame.JumpButton
+			button.MouseButton1Down:Connect(function()
+				Happy = true
+			end)
+			button.MouseButton1Up:Connect(function()
+				Happy = false
+			end)
+		end
+	end
+end)
 
--- game:GetService("UserInputService").InputBegan:connect(function(inp)
--- 	if inp.KeyCode.Name == "Space" then
--- 		Happy = true
--- 	end
--- end)
+game:GetService("UserInputService").InputBegan:connect(function(inp)
+	if inp.KeyCode.Name == "Space" then
+		Happy = true
+	end
+end)
 
--- game:GetService("UserInputService").InputEnded:connect(function(inp)
--- 	if inp.KeyCode.Name == "Space" then
--- 		Happy = false
--- 	end
--- end)
+game:GetService("UserInputService").InputEnded:connect(function(inp)
+	if inp.KeyCode.Name == "Space" then
+		Happy = false
+	end
+end)
 
--- local NotFling = FUN.Create(2,"Fling","Fling?","Арабская ночь",function(Value)
--- 	if Value.Value then
--- 		game.Workspace.Gravity = 0
--- 	else
--- 		game.Workspace.Gravity = DefaultGravity
--- 	end
--- end)
+local NotFling = FUN.Create(2,"Fling","Fling?","Арабская ночь",function(Value)
+	if Value.Value then
+		game.Workspace.Gravity = 0
+	else
+		game.Workspace.Gravity = DefaultGravity
+	end
+end)
 
--- RunService.RenderStepped:connect(function()
--- 	if LocalPlayer.Character then
--- 		if not LocalPlayer.Character.PrimaryPart then return end
--- 		if Happy and HappyMod.Value then
--- 			LocalPlayer.Character.Humanoid:ChangeState(4)
--- 		end if NotFling.Value then
--- 			LocalPlayer.Character.PrimaryPart.AssemblyAngularVelocity += Vector3.new(0,500,0)
--- 		end
--- 	end
--- end)
+RunService.RenderStepped:connect(function()
+	if LocalPlayer.Character then
+		if not LocalPlayer.Character.PrimaryPart then return end
+		if Happy and HappyMod.Value then
+			LocalPlayer.Character.Humanoid:ChangeState(4)
+		end if NotFling.Value then
+			LocalPlayer.Character.PrimaryPart.AssemblyAngularVelocity += Vector3.new(0,500,0)
+		end
+	end
+end)
 
--- FUN.Create(2,"PingedMove","Pined movement","Пингованное перемещение",function(Value)
--- 	if Value.Value then
--- 		game.Workspace.FallenPartsDestroyHeight = 50000
--- 	elseif DOMK.Value then
--- 		game.Workspace.FallenPartsDestroyHeight = -50000
--- 	else
--- 		game.Workspace.FallenPartsDestroyHeight = DefaultFPDH
--- 	end
--- end)
+FUN.Create(2,"PingedMove","Pined movement","Пингованное перемещение",function(Value)
+	if Value.Value then
+		game.Workspace.FallenPartsDestroyHeight = 50000
+	elseif DOMK.Value then
+		game.Workspace.FallenPartsDestroyHeight = -50000
+	else
+		game.Workspace.FallenPartsDestroyHeight = DefaultFPDH
+	end
+end)
 
--- local REvent = {}
--- local function FindEvent(parent)
---     local event = parent:FindFirstChildOfClass("RemoteEvent")
---     if event then
---         table.insert(REvent,event)
---     else
---         for k,v in pairs(parent:GetChildren()) do
--- 		FindEvent(v)
---         end
---     end
--- end
--- FindEvent(game.ReplicatedStorage)
--- if #REvent ~= 0 then
---     local bytes = 102400
---     local val = string.rep("򃿿",bytes/4)
---     local getping = FUN.Create(2,"GetPing","Get Ping","Увеличить пинг")
---     RunService.RenderStepped:Connect(function()
--- 	if getping.Value then
--- 		for _,v in pairs(REvent) do
---         		v:FireServer(val)
--- 		end
--- 	end
---     end)
--- end
+local REvent = {}
+local function FindEvent(parent)
+    local event = parent:FindFirstChildOfClass("RemoteEvent")
+    if event then
+        table.insert(REvent,event)
+    else
+        for k,v in pairs(parent:GetChildren()) do
+		FindEvent(v)
+        end
+    end
+end
+FindEvent(game.ReplicatedStorage)
+if #REvent ~= 0 then
+    local bytes = 102400
+    local val = string.rep("򃿿",bytes/4)
+    local getping = FUN.Create(2,"GetPing","Get Ping","Увеличить пинг")
+    RunService.RenderStepped:Connect(function()
+	if getping.Value then
+		for _,v in pairs(REvent) do
+        		v:FireServer(val)
+		end
+	end
+    end)
+end
 
 -- Chat ------------------------------------------------------------------------------------------------
 local Chat = _G.TimGui.Groups.CreateNewGroup("Chat","Чат")
