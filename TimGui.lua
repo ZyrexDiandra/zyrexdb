@@ -620,7 +620,7 @@ _G.TimGui.Groups.CreateNewGroup = function(name,rus)
 	Button.BackgroundColor3 = Colors.Button
 	Button.TextColor3 = Colors.Text
 	Button.TextScaled = true
-	Instance.new("UICorner",Button).CornerRadius = UDim.new(1,0)
+	Instance.new("UICorner",Button).CornerRadius = UDim.new(0, 8)
 	Button.Activated:Connect(group.OpenGroup)
 	Pos.Value = yy 
 	Groups.CanvasSize = UDim2.new(0, 0, 0, 50 * yy)
@@ -701,7 +701,7 @@ _G.TimGui.Groups.CreateNewGroup = function(name,rus)
 		Obj.Object = Object
 		SetPosForObject(oy,Obj)
 		Object.Visible = _G.TimGui.Values.GroupOpened == group
-		Instance.new("UICorner",Object).CornerRadius = UDim.new(1,0)
+		Instance.new("UICorner",Object).CornerRadius = UDim.new(0, 8)
 		local RunB
 		if typ == 1 or typ == 2 then
 			local FlyCount = 0
@@ -1245,7 +1245,7 @@ _G.TimGui.Print = function(Zag,Txt,ZagRus,TxtRus)
     timer.BackgroundColor3 = Colors.Print.Timer
     timer.Position = UDim2.new(0.05,0,0.25,0)
     timer.Size = UDim2.new(0,0,0,5) 
-    Instance.new("UICorner",timer).CornerRadius = UDim.new(1,0)
+    Instance.new("UICorner",timer).CornerRadius = UDim.new(0, 8)
     if _G.TimGui.Values.RusLang then
         ZagVal.Text = ZagRus
         TxtVal.Text = TxtRus
