@@ -1,7 +1,7 @@
 --[[
 Please, use this script(for updates):
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/main/Main.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/main/Main.lua"))()
 
 ]]
 print([[=============================================
@@ -1366,11 +1366,11 @@ if _G.Setup ~= nil then
 	end
 end
 if loading[1] ~= false then
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/refs/heads/main/Standart.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/refs/heads/main/Standart.lua"))()
 end if loading[2] ~= false then
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/refs/heads/main/Themes.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/refs/heads/main/Themes.lua"))()
 end if loading[3] ~= false then
-	local gameScr = game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/main/Games/".. game.GameId ..".lua")
+	local gameScr = game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/main/Games/".. game.GameId ..".lua")
 	print("TimGui|"..game.GameId)
 	if string.sub(gameScr,1,3)=="404" then
 		print("TimGui|Game script not found")
@@ -1386,7 +1386,7 @@ end if loading[3] ~= false then
 		end)
 	end
 end if loading[4] ~= false then
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/refs/heads/main/Configs.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/refs/heads/main/Configs.lua"))()
 end
 OptimizeClose.Main.Value = true
 _G.Setup = nil

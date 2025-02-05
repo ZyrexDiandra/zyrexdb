@@ -1,7 +1,7 @@
 --[[
 Please, use this script(for updates):
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/main/Main.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/main/Main.lua"))()
 
 ]]
 if game.CoreGui:FindFirstChild("TimEXPLORER") then
@@ -879,23 +879,23 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pl.Character.Humano
 end)
 end
 end) 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGui/main/Standard.lua"))()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/main/TimExplorer/Load.lua"))()
---loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/main/TimControl/Main.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/main/Standard.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/main/TimExplorer/Load.lua"))()
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/main/TimControl/Main.lua"))()
 local success, response = pcall(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/main/Freeze.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/main/Freeze.lua"))()
 end)
 if not success then
 warn("Error load freeze playes:\n" .. response)
 end
 local success, response = pcall(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGui/main/Settings.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/main/Settings.lua"))()
 end)
 _G.TimGui.SetGroup("Settings")
 if not success then
 warn("Error to load settings:\n" .. response)
 end
-local gameScr = game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/main/Games/".. game.GameId ..".lua")
+local gameScr = game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/main/Games/".. game.GameId ..".lua")
 print(game.GameId)
 _G.TimGui.Print("Loaded","TimGui is loaded","Загружен","TimGui загружен.")
 local success, response = pcall(function()

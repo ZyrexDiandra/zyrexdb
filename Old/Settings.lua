@@ -56,4 +56,4 @@ local sff = _G.TimGui.Add.CB("SF", "Spare friends", "Settings", 10, "Щадит�
 _G.TimGui.SpareFriends = sf.Value
 end) 
 sff.Value = true
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/main/Configs.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/main/Configs.lua"))()

@@ -1,4 +1,4 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/TimGUI/main/TimExplorer/Main.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ZyrexDiandra/zyrexdb/main/TimExplorer/Main.lua"))()
 _G.TimGui.XTwo = false
 local MainFrame = game.CoreGui.TimEXPLORER:FindFirstChildOfClass("Frame")
 MainFrame.Position = UDim2.new(1,0,0,0)
